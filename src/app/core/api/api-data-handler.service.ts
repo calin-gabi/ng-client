@@ -1,4 +1,4 @@
-import { APP_CONFIG } from './../../app.config';
+import { IAppConfig } from './../../app.config';
 import { Injectable, Inject } from '@angular/core';
 import { Http, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class ApiDataHandler {
     constructor(
         private _http: Http,
-        @Inject(APP_CONFIG) private _appConfig
+        @Inject('AppConfig') private _appConfig: IAppConfig
     ) {
     }
 

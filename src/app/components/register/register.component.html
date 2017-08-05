@@ -1,0 +1,21 @@
+<div>
+  <form novalidate [formGroup]="registerForm" (ngSubmit)="submitRegister(registerForm)">
+    <div >
+      <div >
+        <label for="username">Username</label>
+        <input formControlName="username" id="username" type="text" required>
+      </div>
+      <div >
+        <label for="password">Type password</label>
+        <input formControlName="password" id="password" type="password" required>
+      </div>
+      <div >
+        <label for="passwordRpeat">Repeat password</label>
+        <input formControlName="passwordRepeat" id="passwordRepeat" type="password" required>
+      </div>
+    </div>
+    <div >
+      <button type="submit">Register</button>
+    </div>
+  </form>
+</div>

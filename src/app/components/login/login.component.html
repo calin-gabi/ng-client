@@ -1,0 +1,20 @@
+<div>
+  <form novalidate [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
+    <div >
+      <div >
+        <label for="username">Username</label>
+        <input formControlName="username" id="username" type="text" required>
+      </div>
+      <div >
+        <label for="password">password</label>
+        <input formControlName="password" id="password" type="password" required>
+      </div>
+    </div>
+    <div >
+      <button type="submit">Login</button>
+    </div>
+  </form>
+</div>
+<p >
+  <a href="#" routerLink="/register" class="btn-link">Register if you don't have an account</a>
+</p>

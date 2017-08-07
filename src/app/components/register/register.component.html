@@ -4,6 +4,7 @@
       <div >
         <label for="username">Username</label>
         <input formControlName="username" id="username" type="text" required>
+        <span *ngIf="!registerForm.controls['username'].errors">Username not available!</span>
       </div>
       <div >
         <label for="password">Type password</label>

@@ -1,3 +1,4 @@
+import { LoginActions } from './login/login.actions';
 import { HomeModule } from './home/home.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -25,7 +26,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [LoginActions],
   exports: [RouterModule, HomeModule]
 })
 export class ComponentsModule { }

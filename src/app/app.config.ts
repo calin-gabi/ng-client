@@ -4,6 +4,7 @@
 
 export interface IAppConfig {
     apiUrl: string;
+    reduxLog: boolean;
 }
 // export const AppConfig: IAppConfig = {
 //     apiUrl: 'http://localhost:9000/'

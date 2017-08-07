@@ -11,6 +11,18 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "types": [
+      "hammerjs",
+      "jasmine",
+      "node",
+      "source-map",
+      "uglify-js",
+      "webpack"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist"
+    ],
     "lib": [
       "es2016",
       "dom"

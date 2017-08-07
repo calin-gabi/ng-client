@@ -29,14 +29,20 @@ export class RegisterComponent implements OnInit {
   }
 
   private validUsername(control: AbstractControl) {
-    const userNameExists = true;
-    if (userNameExists) {
-      return Observable.create((obs) => {
-        obs.next({ usernameExists: true});
-      });
-    } else {
-      return null;
-    }
+    const username = control.value;
+    return this._loginService.isUsernameAvailable(username).map(
+      (res) => {
+          console.log(res);
+            setTimeout(() => { console.log(this.registerForm.controls['username']); }, 500);
+        if (res) {
+          return Observable.create((obs) => {
+            obs.next({ usernameExists: true});
+          }).first();
+        } else {
+          return null;
+        }
+      }
+    );
   }
 
   private validPassword(control: AbstractControl) {

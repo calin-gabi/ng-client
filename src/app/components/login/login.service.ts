@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ApiDataHandler } from './../../core/api/api-data-handler.service';
 import { Injectable, Inject } from '@angular/core';
 // tslint:disable-next-line:import-blacklist
@@ -5,15 +6,24 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class LoginService {
+    public redirectUrl = '';
 
     constructor(
-        private _apiData: ApiDataHandler
+        private _apiData: ApiDataHandler,
+        private _router: Router
     ) {
 
     }
 
+    public isUsernameAvailable(username: string): Observable<any>  {
+        const payload = {
+            username
+        };
+        return this._apiData.postApi('users/isAvailable', this._addCommonParams(payload));
+    }
+
     public isAuthenticated() {
-        return this._apiData.getApi('auth/isauthenticated');
+        return this._apiData.getApi('auth/isAuthenticated');
     }
 
     public login(username: string, password: string) {
@@ -21,7 +31,13 @@ export class LoginService {
             username,
             password
         };
-        return this._apiData.postApi('auth/signin', this._addCommonParams(payload));
+        return this._apiData.postApi('auth/signIn', this._addCommonParams(payload));
+    }
+
+    public onLogged(override = this.redirectUrl) {
+        this._router.navigate([override]).then(null, () => {
+            console.error('System not authenticated');
+        });
     }
 
     public register(username: string, password: string) {

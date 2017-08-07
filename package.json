@@ -12,6 +12,9 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/form": "^6.6.0",
+    "@angular-redux/router": "^6.3.1",
+    "@angular-redux/store": "^6.5.7",
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
@@ -22,6 +25,10 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
+    "redux": "^3.7.2",
+    "redux-localstorage": "^0.4.1",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^0.14.1",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
   },
@@ -32,6 +39,7 @@
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
+    "@types/redux-logger": "^3.0.0",
     "codelyzer": "~3.0.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",

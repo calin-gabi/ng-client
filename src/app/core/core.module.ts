@@ -1,3 +1,4 @@
+import { LocalStorageService } from './local-storage.service';
 import { StoreModule } from './store/store.module';
 import { Http } from '@angular/http';
 import { LoginService } from './../components/login/login.service';
@@ -18,7 +19,7 @@ import { HomeComponent } from './../components/home/home.component';
   exports: [
     StoreModule
   ],
-  providers: [ ApiDataHandler, LoginService ],
+  providers: [ ApiDataHandler, LoginService, LocalStorageService ],
   declarations: []
 })
 

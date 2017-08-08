@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../app/core/local-storage.service';
 import { appConfigProd } from './../app/app.config.prod';
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -13,11 +14,16 @@ import {
 } from '@angular/core';
 // Environment Providers
 const PROVIDERS: any[] = [
-  { provide: 'AppConfig', useFactory: getConfig }
+  { provide: 'AppConfig', useFactory: getConfig },
+  { provide: 'Window', useFactory: getWindow }
 ];
 
 export function getConfig() {
   return appConfigProd;
+}
+
+export function getWindow() {
+  return LocalStorageService;
 }
 
 export const environment = {

@@ -1,6 +1,8 @@
-<p>
-  Hello {{login.username}}!
-
-</p>
+<div class="home-header">
+  <p>
+    Hello {{login.username}}!
+  </p>
+  <button (click)="logout()">Logout</button>
+</div>
 <app-users></app-users>
 <app-records></app-records>

@@ -50,7 +50,7 @@ export class LoginService {
     }
 
     public logout() {
-        return this._apiData.getApi('auth/signOut');
+        return this._apiData.postApi('auth/signOut', this._addCommonParams({}));
     }
 
     private _addCommonParams(obj) {

@@ -43,13 +43,14 @@ export class LoginService {
     public register(username: string, password: string) {
         const payload = {
             username,
-            password
+            password,
+            email: username
         };
-        return this._apiData.postApi('auth/signup', this._addCommonParams(payload));
+        return this._apiData.postApi('auth/signUp', this._addCommonParams(payload));
     }
 
     public logout() {
-        return this._apiData.getApi('auth/signout');
+        return this._apiData.getApi('auth/signOut');
     }
 
     private _addCommonParams(obj) {

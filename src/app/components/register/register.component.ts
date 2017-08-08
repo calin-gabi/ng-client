@@ -1,3 +1,4 @@
+import { LoginActions } from './../login/login.actions';
 import { LoginService } from './../login/login.service';
 // tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs';
@@ -13,7 +14,8 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
 
   constructor(
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    private _actions: LoginActions
   ) { }
 
   ngOnInit() {
@@ -21,9 +23,7 @@ export class RegisterComponent implements OnInit {
       username: new FormControl('', Validators.required, (control) => {
         return this.validUsername(control);
       }),
-      password: new FormControl('', Validators.required, (control) => {
-        return this.validPassword(control);
-      }),
+      password: new FormControl('', Validators.required),
       passwordRepeat: new FormControl()
     }, this.matchingPasswords('password', 'passwordRepeat'));
   }
@@ -32,12 +32,8 @@ export class RegisterComponent implements OnInit {
     const username = control.value;
     return this._loginService.isUsernameAvailable(username).map(
       (res) => {
-          console.log(res);
-            setTimeout(() => { console.log(this.registerForm.controls['username']); }, 500);
-        if (res) {
-          return Observable.create((obs) => {
-            obs.next({ usernameExists: true});
-          }).first();
+        if (res === 'false') {
+          return { usernameExists: true};
         } else {
           return null;
         }
@@ -74,6 +70,7 @@ export class RegisterComponent implements OnInit {
     return (group: FormGroup): { [key: string]: any } => {
       const password = group.controls[passwordKey];
       const confirmPassword = group.controls[confirmPasswordKey];
+      console.log(this.registerForm);
       if (confirmPassword.pristine) {
         return {};
       }
@@ -84,18 +81,22 @@ export class RegisterComponent implements OnInit {
         return {
           mismatchedPasswords: true
         };
+      } else {
+        return null;
       }
     };
   }
 
   public submitRegister(form: FormGroup) {
     if (form.valid) {
-      this._loginService.login(
+      this._loginService.register(
         form.get('username').value,
         form.get('password').value)
         .subscribe((res) => {
-          console.log(res);
+          this._actions.saveLogin(res);
+          this._loginService.onLogged();
         }, (error) => {
+          console.log(error);
         });
     } else {
       console.log('form invalid');

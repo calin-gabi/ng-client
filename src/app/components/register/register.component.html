@@ -4,7 +4,11 @@
       <div >
         <label for="username">Username</label>
         <input formControlName="username" id="username" type="text" required>
-        <span *ngIf="!registerForm.controls['username'].errors">Username not available!</span>
+        <div 
+          *ngIf="registerForm.controls['username'].hasError('usernameExists') 
+                  && registerForm.controls['username'].touched">
+                  Username not available!
+        </div>
       </div>
       <div >
         <label for="password">Type password</label>
@@ -14,9 +18,14 @@
         <label for="passwordRpeat">Repeat password</label>
         <input formControlName="passwordRepeat" id="passwordRepeat" type="password" required>
       </div>
+        <div 
+          *ngIf="registerForm.hasError('mismatchedPasswords') 
+                  && registerForm.touched">
+                  Passwords do not match!!
+        </div>
     </div>
     <div >
-      <button type="submit">Register</button>
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
     </div>
   </form>
 </div>

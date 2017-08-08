@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import { select } from '@angular-redux/store';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public login: any;
 
-  constructor() { }
+  @select(['login', 'login'])
+  private _login$: Observable<any>;
+
+  constructor() {
+    this._login$.subscribe((login) => { this.login = login; });
+  }
 
   ngOnInit() {
   }

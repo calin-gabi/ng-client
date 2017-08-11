@@ -48,7 +48,7 @@ export class ApiDataHandler {
                 return res.json() || {};
             }
         } catch (e) {
-            return 'API JSON ERROR';
+            return 'Extract data error';
         }
     }
 

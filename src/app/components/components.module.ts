@@ -1,3 +1,5 @@
+import { AnonymusGuard } from './../core/guards/anonymus-guard.service';
+import { AuthGuard } from './../core/guards/auth-guard.service';
 import { LoginActions } from './login/login.actions';
 import { HomeModule } from './home/home.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,8 +11,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 export const ROUTES: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '', canActivate: [AuthGuard] , component: HomeComponent },
+  { path: 'login', canActivate: [AnonymusGuard], component: LoginComponent },
   { path: 'register', component: RegisterComponent }
 ];
 
@@ -26,7 +28,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [LoginActions],
+  providers: [LoginActions, AuthGuard, AnonymusGuard],
   exports: [RouterModule, HomeModule]
 })
 export class ComponentsModule { }

@@ -6,13 +6,15 @@ export interface ILoginStore {
 }
 
 export const INITIAL_STATE: ILoginStore = {
-    login: null
+    login: {}
 };
 
 export function loginReducer(state: ILoginStore = INITIAL_STATE,
                              action: any): ILoginStore {
     switch (action.type) {
         case LoginActions.SAVE_LOGIN:
+            return { ...state, login: action.payload};
+        case LoginActions.SAVE_LOGOUT:
             return { ...state, login: action.payload};
         default:
             return state;

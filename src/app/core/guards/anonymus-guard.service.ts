@@ -6,7 +6,7 @@ import { CanLoad, Router, Route, CanActivate, ActivatedRouteSnapshot, RouterStat
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AnonymusGuard implements CanActivate {
 
     constructor(
         private _router: Router,
@@ -15,23 +15,21 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     public canActivate() {
-        return this.isAuthenticated();
+        return this.isAnanonymus();
     }
 
-    private isAuthenticated() {
+    private isAnanonymus() {
         return this._loginService.isAuthenticated()
             .catch((error) => {
-                this._router.navigate(['login']);
-                return Observable.of(false);
+                return Observable.of(true);
             })
             .flatMap((res) => {
                 if (res.username === 'anonymus') {
-                    console.log('login ');
-                    this._router.navigate(['login']);
-                    return Observable.of(false);
-                } else {
-                    this._actions.saveLogin(res);
+                    console.log(res);
                     return Observable.of(true);
+                } else {
+                    this._router.navigate(['']);
+                    return Observable.of(false);
                 }
             });
     }

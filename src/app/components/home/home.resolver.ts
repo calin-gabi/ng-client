@@ -31,7 +31,7 @@ export class HomeResolver implements Resolve<any> {
                 (res) => {
                     console.log(res);
                     const usersList = this._ngRedux.getState().users.users;
-                    if (usersList !== res) {
+                    if (JSON.stringify(usersList) !== JSON.stringify(res)) {
                         this._usersActions.saveUsers(res);
                     }
                     let currentUserId = this._ngRedux.getState().login.login['id'];
@@ -41,17 +41,24 @@ export class HomeResolver implements Resolve<any> {
                     if (currentUserId !== this._ngRedux.getState().records.curentUserId) {
                         this._recordsActions.saveCurrentUserId(currentUserId);
                     }
-                    return this._recordsService.getRecords(currentUserId)
-                        .catch((error) => {
-                            return Observable.of([]);
-                        })
-                        .map(
-                            (records) => {
-                                console.log(records);
-                                return records;
-                            }
-                        );
+                    return currentUserId;
                 }
-            );
+            )
+            .flatMap((userID) => {
+                return this._recordsService.getRecords(userID)
+                .catch((error) => {
+                    return Observable.of([]);
+                })
+                .map(
+                    (records) => {
+                        console.log(records);
+                        const recordsList = this._ngRedux.getState().records.records;
+                        if (JSON.stringify(recordsList) !== JSON.stringify(records)) {
+                            this._recordsActions.saveRecords(records);
+                        }
+                        return records;
+                    }
+                );
+            });
     }
 }

@@ -1,3 +1,4 @@
+import { IRecordsStore, recordsReducer } from './records.reducer';
 import { IUsersStore, usersReducer } from './users.reducer';
 import { IAppState } from './store.module';
 import { IAppConfig } from './../../app.config';
@@ -16,11 +17,13 @@ const PERSIST_STATE = require('redux-localstorage');
 export interface IAppState {
     login?: ILoginStore;
     users?: IUsersStore;
+    records?: IRecordsStore;
 }
 
 export const ROOT_REDUCER = combineReducers<IAppState> ({
     login: loginReducer,
-    users: usersReducer
+    users: usersReducer,
+    records: recordsReducer
 });
 
 export const ENHANCERS = [

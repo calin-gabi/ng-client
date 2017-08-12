@@ -1,3 +1,4 @@
+import { RecordsService } from './records.service';
 import { RecordsComponent } from './records.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,7 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule
   ],
-  providers: [],
+  providers: [RecordsService],
   declarations: [RecordsComponent],
   exports: [RecordsComponent]
 })

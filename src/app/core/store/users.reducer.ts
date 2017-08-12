@@ -3,11 +3,11 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ActivatedRouteSnapshot } from '@angular/router';
 
 export interface IUsersStore {
-    users: {};
+    users: Array<any>;
 }
 
 export const INITIAL_STATE: IUsersStore = {
-    users: {}
+    users: []
 };
 
 export function usersReducer(state: IUsersStore = INITIAL_STATE,

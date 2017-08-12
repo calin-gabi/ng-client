@@ -12,7 +12,7 @@ export class LoginActions {
     ) {
 
     }
-    public saveLogin(login: {} ){
+    public saveLogin(login: {} ) {
         this._ngRedux.dispatch({type: LoginActions.SAVE_LOGIN, payload: login});
     }
 

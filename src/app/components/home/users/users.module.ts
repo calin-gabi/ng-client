@@ -1,3 +1,4 @@
+import { UsersService } from './users.service';
 import { UsersComponent } from './users.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,7 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule
   ],
-  providers: [],
+  providers: [UsersService],
   declarations: [UsersComponent],
   exports: [UsersComponent]
 })

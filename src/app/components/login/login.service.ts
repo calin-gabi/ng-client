@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { ApiDataHandler } from './../../core/api/api-data-handler.service';
+import { ApiDataHandler } from './../../core/api/api-data-handler';
 import { Injectable, Inject } from '@angular/core';
 // tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs';

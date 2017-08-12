@@ -1,3 +1,4 @@
+import { HomeResolver } from './home/home.resolver';
 import { AnonymusGuard } from './../core/guards/anonymus-guard.service';
 import { AuthGuard } from './../core/guards/auth-guard.service';
 import { LoginActions } from './login/login.actions';
@@ -11,7 +12,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 export const ROUTES: Routes = [
-  { path: '', canActivate: [AuthGuard] , component: HomeComponent },
+  { path: '',
+    canActivate: [AuthGuard] ,
+    component: HomeComponent ,
+    resolve: {
+      homeResolver: HomeResolver
+    }
+  },
   { path: 'login', canActivate: [AnonymusGuard], component: LoginComponent },
   { path: 'register', component: RegisterComponent }
 ];
@@ -28,7 +35,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [LoginActions, AuthGuard, AnonymusGuard],
+  providers: [LoginActions, AuthGuard, AnonymusGuard, HomeResolver],
   exports: [RouterModule, HomeModule]
 })
 export class ComponentsModule { }

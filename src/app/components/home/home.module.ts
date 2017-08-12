@@ -1,3 +1,5 @@
+import { RecordsModule } from './records/records.module';
+import { UsersModule } from './users/users.module';
 import { RecordsComponent } from './records/records.component';
 import { HomeComponent } from './home.component';
 import { UsersComponent } from './users/users.component';
@@ -6,11 +8,13 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    UsersModule,
+    RecordsModule
   ],
   providers: [],
-  declarations: [HomeComponent, UsersComponent, RecordsComponent],
-  exports: [HomeComponent, UsersComponent, RecordsComponent]
+  declarations: [HomeComponent],
+  exports: [HomeComponent]
 })
 
 export class HomeModule { }

@@ -1,3 +1,4 @@
+import { IUsersStore, usersReducer } from './users.reducer';
 import { IAppState } from './store.module';
 import { IAppConfig } from './../../app.config';
 import { NgRedux, DevToolsExtension, NgReduxModule } from '@angular-redux/store';
@@ -14,10 +15,12 @@ const PERSIST_STATE = require('redux-localstorage');
 
 export interface IAppState {
     login?: ILoginStore;
+    users?: IUsersStore;
 }
 
 export const ROOT_REDUCER = combineReducers<IAppState> ({
     login: loginReducer,
+    users: usersReducer
 });
 
 export const ENHANCERS = [

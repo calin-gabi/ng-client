@@ -1,7 +1,8 @@
+import { HttpHandlerService } from './http-handler.service';
 import { LocalStorageService } from './../local-storage.service';
 import { IAppConfig } from './../../app.config';
 import { Injectable, Inject } from '@angular/core';
-import { Http, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
+import { Http, RequestOptions, Request, RequestOptionsArgs, Response, Headers, XHRBackend } from '@angular/http';
 import { DOCUMENT } from '@angular/platform-browser';
 import { select } from '@angular-redux/store';
 
@@ -11,13 +12,15 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class ApiDataHandler {
+export class ApiDataHandler extends HttpHandlerService {
 
     constructor(
-        private _http: Http,
-        private _ls: LocalStorageService,
+        backend: XHRBackend,
+        options: RequestOptions,
+        public _ls: LocalStorageService,
         @Inject('AppConfig') private _appConfig: IAppConfig
     ) {
+        super(backend, options);
     }
 
     private freeRoutes = ['auth/signIn', 'auth/signUp'];
@@ -27,7 +30,7 @@ export class ApiDataHandler {
         if (endpoint in this.freeRoutes === false) {
             headers.append('Token', this._ls.get('token', ''));
         }
-        return this._http.get(this._appConfig.apiUrl + endpoint, new RequestOptions({ headers}))
+        return this.get(this._appConfig.apiUrl + endpoint, new RequestOptions({ headers}))
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -37,7 +40,17 @@ export class ApiDataHandler {
         if (endpoint in this.freeRoutes === false) {
             headers.append('Token', this._ls.get('token', ''));
         }
-        return this._http.post(this._appConfig.apiUrl + endpoint, payload, new RequestOptions({ headers}))
+        return this.post(this._appConfig.apiUrl + endpoint, payload, new RequestOptions({ headers}))
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    public deleteApi(endpoint) {
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        if (endpoint in this.freeRoutes === false) {
+            headers.append('Token', this._ls.get('token', ''));
+        }
+        return this.delete(this._appConfig.apiUrl + endpoint, new RequestOptions({ headers}))
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -62,11 +75,11 @@ export class ApiDataHandler {
             } else {
                 errMsg = error.message ? error.message : error.toString();
             }
-            // console.error(errMsg);
         } catch (e) {
-            // console.error('Unexpected(JSON) format.');
+            console.error('Unexpected(JSON) format.');
         }
-        return Observable.throw(error || 'backend server error');
+        // console.error(errMsg);
+        return Observable.throw(errMsg  || 'backend server error');
     }
 }
 

@@ -51,7 +51,7 @@ export class HomeResolver implements Resolve<any> {
                 })
                 .map(
                     (records) => {
-                        console.log(records);
+                        // console.log(records);
                         const recordsList = this._ngRedux.getState().records.records;
                         if (JSON.stringify(recordsList) !== JSON.stringify(records)) {
                             this._recordsActions.saveRecords(records);

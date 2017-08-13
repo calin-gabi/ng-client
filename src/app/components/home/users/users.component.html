@@ -1,3 +1,12 @@
-<p>
-  users works!
-</p>
+<div class="users-header">
+
+</div>
+<div class="users-body">
+  <div class="users-container">
+    <div class="user-element" *ngFor="let user of users">
+      <span (click)="selectUser(user)">
+          username {{user.username}}
+      </span>      
+    </div>
+  </div>
+</div>

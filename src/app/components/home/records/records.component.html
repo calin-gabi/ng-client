@@ -1,3 +1,10 @@
-<p>
-  records works!
-</p>
+<div class="records-header">
+  
+  </div>
+  <div class="records-body">
+    <div class="records-container">
+      <div class="record-element" *ngFor="let record of records">
+        record {{record.id}}
+      </div>
+    </div>
+  </div>

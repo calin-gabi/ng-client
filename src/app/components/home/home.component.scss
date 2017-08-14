@@ -1,0 +1,33 @@
+app-home {
+    display: block;
+    width: 100%;
+    height: 100vh;
+
+    .home-header {
+        display: flex;
+        flex-direction: row;
+        margin: 20px;
+
+        .left-header {
+            flex-grow: 1;
+        }
+
+        .middle-header {
+            flex-grow: 2;
+        }
+
+        .right-header {
+            flex-grow: 1;
+            text-align: right;
+            button {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .home-body {
+        display: flex;
+        flex-direction: row;
+        margin: 0 20px;
+    }
+}

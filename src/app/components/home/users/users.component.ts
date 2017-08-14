@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { RecordsActions } from './../records/records.actions';
 import { RecordsService } from './../records/records.service';
 import { UsersService } from './users.service';
@@ -13,6 +14,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
   public users: Array<any>;
+  public roles: Array<any>;
 
   @select(['users', 'users'])
   private _users$: Observable<any>;
@@ -23,6 +25,7 @@ export class UsersComponent implements OnInit {
     private _actionsRecords: RecordsActions
   ) {
     this._users$.subscribe((users) => { this.users = users; });
+    this.roles = [{value: 'user'}, {value: 'manager'}, {value: 'admin'}];
   }
 
   public selectUser(user: any) {
@@ -36,6 +39,11 @@ export class UsersComponent implements OnInit {
         console.log(err);
       }
      );
+  }
+
+  public selectRole(role: String) {
+    console.log(role);
+    return;
   }
 
   ngOnInit() {

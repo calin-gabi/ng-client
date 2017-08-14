@@ -29,7 +29,7 @@ export class HomeResolver implements Resolve<any> {
             })
             .map(
                 (res) => {
-                    console.log(res);
+                    // console.log(res);
                     const usersList = this._ngRedux.getState().users.users;
                     if (JSON.stringify(usersList) !== JSON.stringify(res)) {
                         this._usersActions.saveUsers(res);

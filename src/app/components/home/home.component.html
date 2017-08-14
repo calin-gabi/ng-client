@@ -1,8 +1,15 @@
-<div *ngIf="login" class="home-header">
-  <p>
-    Hello {{login.username}}!
-  </p>
-  <button (click)="logout()">Logout</button>
+<div class="home-header">
+  <div class="left-header">
+      Hello {{login.username}}!
+  </div>
+  <div class="middle-header">
+
+  </div>
+  <div class="right-header">
+      <button (click)="logout()">Logout</button>
+  </div>
 </div>
-<app-users></app-users>
-<app-records></app-records>
+<div class="home-body">
+  <app-users></app-users>
+  <app-records></app-records>
+</div>

@@ -1,13 +1,14 @@
 import { Route, Router } from '@angular/router';
 import { LoginActions } from './../login/login.actions';
 import { LoginService } from './../login/login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { select } from '@angular-redux/store';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {

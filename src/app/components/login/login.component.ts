@@ -1,12 +1,13 @@
 import { LocalStorageService } from './../../core/local-storage.service';
 import { LoginActions } from './login.actions';
 import { LoginService } from './login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {

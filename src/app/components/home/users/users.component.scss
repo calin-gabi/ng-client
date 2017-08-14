@@ -1,0 +1,28 @@
+app-users {
+    display: block;
+
+    .username {
+        display: block;
+        width: 200px;
+    }
+    .role {
+        width: 150px;
+    }
+    > .header {
+        > .title {
+            width: 100%;
+        }
+        > .headrow {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+    > .body {
+        .users-container {
+            .user-element {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+    }
+}

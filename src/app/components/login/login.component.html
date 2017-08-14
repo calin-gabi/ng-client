@@ -1,4 +1,4 @@
-<div>
+<div id="login-form">
   <form novalidate [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
     <div >
       <div >
@@ -14,7 +14,7 @@
       <button type="submit">Login</button>
     </div>
   </form>
+  <p >
+    <a href="#" routerLink="/register" class="btn-link">Register if you don't have an account</a>
+  </p>
 </div>
-<p >
-  <a href="#" routerLink="/register" class="btn-link">Register if you don't have an account</a>
-</p>

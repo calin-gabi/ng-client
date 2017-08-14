@@ -1,12 +1,19 @@
-<div class="users-header">
-
+<div class="header">
+  <div class="title">Users</div>
+  <div class="headrow">
+    <span class="username">username</span>
+    <span class="role">role</span>
+  </div>
 </div>
-<div class="users-body">
+<div class="body">
   <div class="users-container">
     <div class="user-element" *ngFor="let user of users">
-      <span (click)="selectUser(user)">
-          username {{user.username}}
-      </span>      
+      <span class="username" (click)="selectUser(user)">
+           {{user.username}}
+      </span>
+      <select [ngModel]="user.role" (ngModelChange)="selectRole($event)">
+        <option *ngFor="let role of roles" [value]="role.value">{{role.value}}</option>
+      </select> 
     </div>
   </div>
 </div>

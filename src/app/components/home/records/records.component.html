@@ -1,10 +1,18 @@
 <div class="records-header">
-  
+  <div class="records-search">
+    Search div
   </div>
-  <div class="records-body">
-    <div class="records-container">
-      <div class="record-element" *ngFor="let record of records">
-        record {{record.id}}
-      </div>
+  <div class="records-headrow">
+    <span class="description">Description</span>
+    <span class="date">Date time</span>
+    <span class="amount">Amount</span>
+    <span class="comments">Comments</span>
+  </div>
+</div>
+<div class="records-body">
+  <div class="records-container">
+    <div class="record-element" *ngFor="let record of records">
+      record {{record.id}}
     </div>
   </div>
+</div>

@@ -6,7 +6,9 @@ app-home {
     .home-header {
         display: flex;
         flex-direction: row;
-        margin: 20px;
+        padding: 10px;
+        background-color: rgb(133, 191, 217);
+        color: #fff;
 
         .left-header {
             flex-grow: 1;
@@ -19,8 +21,10 @@ app-home {
         .right-header {
             flex-grow: 1;
             text-align: right;
+
             button {
-                cursor: pointer;
+                font-size: 14px;
+                font-weight: normal;
             }
         }
     }
@@ -28,6 +32,7 @@ app-home {
     .home-body {
         display: flex;
         flex-direction: row;
-        margin: 0 20px;
+        padding: 10px 20px;
+        height: calc(100% - 65px);
     }
 }

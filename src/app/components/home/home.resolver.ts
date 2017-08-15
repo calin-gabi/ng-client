@@ -8,6 +8,7 @@ import { NgRedux } from '@angular-redux/store';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { IRecord, Record } from './records/record';
 
 @Injectable()
 export class HomeResolver implements Resolve<any> {
@@ -54,7 +55,10 @@ export class HomeResolver implements Resolve<any> {
                         // console.log(records);
                         const recordsList = this._ngRedux.getState().records.records;
                         if (JSON.stringify(recordsList) !== JSON.stringify(records)) {
-                            this._recordsActions.saveRecords(records);
+                            const records_ = records.map((elem) => {
+                                return new Record(elem);
+                            });
+                            this._recordsActions.saveRecords(records_);
                         }
                         return records;
                     }

@@ -1,5 +1,7 @@
 app-users {
     display: block;
+    border-right: solid 0.5px #eee;
+    height: 100%;
 
     .username {
         display: block;
@@ -8,20 +10,51 @@ app-users {
     .role {
         width: 150px;
     }
+
     > .header {
+        border-bottom: solid 0.5px #ddd;
+        margin-bottom: 10px;
+
         > .title {
             width: 100%;
+            display: none;
         }
         > .headrow {
             display: flex;
             flex-direction: row;
         }
     }
+
     > .body {
         .users-container {
             .user-element {
                 display: flex;
                 flex-direction: row;
+                margin-bottom: 5px;
+
+                .userrole {
+                    width: 100px;
+                    display: block;
+                }
+
+                span:first-child {
+                    flex-grow: 2;
+                }
+
+                select {                        
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    padding: 2px 30px 2px 5px;
+                    border: none;
+                    flex-grow: 1;
+                }
+
+                fa {
+                    flex-grow: 1;
+                    margin: 0 10px 0 20px;
+                    color: white;
+                    cursor: pointer;
+                }
             }
         }
     }

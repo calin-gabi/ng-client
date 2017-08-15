@@ -15,9 +15,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class UsersComponent implements OnInit {
   public users: Array<any>;
   public roles: Array<any>;
+  public login: {};
 
   @select(['users', 'users'])
   private _users$: Observable<any>;
+
+  @select(['login', 'login'])
+  private _login$: Observable<any>;
 
   constructor(
     private _usersService: UsersService,
@@ -25,7 +29,16 @@ export class UsersComponent implements OnInit {
     private _actionsRecords: RecordsActions
   ) {
     this._users$.subscribe((users) => { this.users = users; });
+    this._login$.subscribe((login) => { this.login = login; });
     this.roles = [{value: 'user'}, {value: 'manager'}, {value: 'admin'}];
+  }
+
+  public editable(user) {
+    if (this.login['role'] === 'admin' && user.username !== this.login['username']) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public selectUser(user: any) {

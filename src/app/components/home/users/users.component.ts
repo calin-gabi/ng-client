@@ -1,6 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { RecordsActions } from './../records/records.actions';
 import { RecordsService } from './../records/records.service';
+import { Record } from './../records/record';
 import { UsersService } from './users.service';
 import { Observable } from 'rxjs/Rx';
 import { select } from '@angular-redux/store';
@@ -26,6 +27,7 @@ export class UsersComponent implements OnInit {
   constructor(
     private _usersService: UsersService,
     private _recordsService: RecordsService,
+    private _recordsActions: RecordsActions,
     private _actionsRecords: RecordsActions
   ) {
     this._users$.subscribe((users) => { this.users = users; });
@@ -44,9 +46,12 @@ export class UsersComponent implements OnInit {
   public selectUser(user: any) {
     this._recordsService.getRecords(user.id).subscribe(
       (res) => {
-        console.log(res);
-        this._actionsRecords.saveCurrentUserId(user.id);
-        this._actionsRecords.saveRecords(res);
+        // console.log(res);
+        this._actionsRecords.saveCurrentUser(user);
+        const records_ = res.map((elem) => {
+            return new Record(elem);
+        });
+        this._recordsActions.saveRecords(records_);
       },
       (err) => {
         console.log(err);

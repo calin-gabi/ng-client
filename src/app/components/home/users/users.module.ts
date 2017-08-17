@@ -1,3 +1,4 @@
+import { SharedModule } from './../../../shared/shared.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from './users.service';
@@ -9,7 +10,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     FormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    SharedModule
   ],
   providers: [UsersService],
   declarations: [UsersComponent],

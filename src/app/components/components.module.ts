@@ -27,7 +27,7 @@ export const ROUTES: Routes = [
   declarations: [
     LoginComponent,
     RegisterComponent
-  ],
+],
   imports: [
     BrowserModule,
     FormsModule,

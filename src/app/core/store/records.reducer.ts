@@ -3,12 +3,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ActivatedRouteSnapshot } from '@angular/router';
 
 export interface IRecordsStore {
-    curentUserId: number;
+    currentUser: any;
     records: Array<any>;
 }
 
 export const INITIAL_STATE: IRecordsStore = {
-    curentUserId: null,
+    currentUser: {},
     records: []
 };
 
@@ -17,8 +17,8 @@ export function recordsReducer(state: IRecordsStore = INITIAL_STATE,
     switch (action.type) {
         case RecordsActions.SAVE_RECORDS:
             return { ...state, records: action.payload};
-        case RecordsActions.SAVE_CURRENT_USERID:
-            return { ...state, curentUserId: action.payload};
+        case RecordsActions.SAVE_CURRENT_USER:
+            return { ...state, currentUser: action.payload};
         default:
             return state;
     }

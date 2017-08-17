@@ -7,13 +7,32 @@
     <span class="date">Date time</span>
     <span class="amount">Amount</span>
     <span class="comments">Comments</span>
-    <button type="button" class="btn btn-danger">tes</button>
   </div>
 </div>
 <div class="records-body">
   <div class="records-container">
     <div class="record-element" *ngFor="let record of records">
-      record {{record.id}}
+      <div *ngIf="!editable" class="editable">
+        <div class="description">{{record.description}}</div>
+        <div *ngIf="record.date" class="date">{{record.date.format('MMM DD YYYY HH:mm')}}</div>
+        <div class="amount">{{record.amount}}</div>
+        <div class="comments">{{record.comment}}</div>
+      </div>
+      <div *ngIf="editable" class="editable">
+        <div class="description">
+          <input type="text" [ngModel]="record.description">
+        </div>
+        <div class="date">
+          <input type="date" [ngModel]="record.date._d | date: 'm/d/yy'">
+          {{record.date._d | date: 'MM/dd/yyyy,HH:mm'}}
+        </div>
+        <div class="amount">
+          <input type="number" [ngModel]="record.amount">
+        </div>
+        <div class="comments">
+          <input type="text" [ngModel]="record.comment">
+        </div>
+      </div>
     </div>
   </div>
 </div>

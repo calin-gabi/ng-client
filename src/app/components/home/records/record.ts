@@ -1,10 +1,12 @@
 import { DevToolsExtension } from '@angular-redux/store';
 import { IRecord } from './record';
 
+import * as moment from 'moment';
+
 export interface IRecord {
     id: number;
     user_id: number;
-    date: Date;
+    date: {};
     description: string;
     amount: number;
     comment: string;
@@ -14,18 +16,18 @@ export interface IRecord {
 export class Record implements IRecord {
     public id: number;
     public user_id: number;
-    date: Date;
-    description: string;
-    amount: number;
-    comment: string;
+    public date: {};
+    public description: string;
+    public amount: number;
+    public comment: string;
     rev: number;
 
     constructor(elem: any) {
         this.id = elem.id;
         this.user_id = elem.user_id;
-        this.date = new Date(elem.date);
+        this.date = moment(elem.date);
         this.description = elem.description;
-        this.amount = elem.amount;
+        this.amount = elem.amount.toFixed(2);
         this.comment = elem.comment;
         this.rev = elem.rev;
     }

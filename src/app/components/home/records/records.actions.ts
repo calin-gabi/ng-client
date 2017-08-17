@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class RecordsActions {
     public static readonly SAVE_RECORDS = 'SAVE_RECORDS';
-    public static readonly SAVE_CURRENT_USERID= 'SAVE_CURRENT_USERID';
+    public static readonly SAVE_CURRENT_USER= 'SAVE_CURRENT_USER';
 
     constructor(
         private _ngRedux: NgRedux<IAppState>
@@ -17,7 +17,7 @@ export class RecordsActions {
         this._ngRedux.dispatch({type: RecordsActions.SAVE_RECORDS, payload: records});
     }
 
-    public saveCurrentUserId(currentUserId: {} ) {
-            this._ngRedux.dispatch({type: RecordsActions.SAVE_CURRENT_USERID, payload: currentUserId});
+    public saveCurrentUser(currentUser: {} ) {
+            this._ngRedux.dispatch({type: RecordsActions.SAVE_CURRENT_USER, payload: currentUser});
         }
 }

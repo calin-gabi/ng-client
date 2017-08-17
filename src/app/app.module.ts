@@ -1,3 +1,5 @@
+import { SharedModule } from './shared/shared.module';
+import * as jQuery from 'jquery';
 import { HttpModule } from '@angular/http';
 import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +21,8 @@ import { CoreModule } from './core/core.module';
     HttpModule,
     ComponentsModule,
     FormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    SharedModule
   ],
   providers: [
     ENV_PROVIDERS

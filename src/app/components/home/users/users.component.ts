@@ -59,8 +59,13 @@ export class UsersComponent implements OnInit {
      );
   }
 
-  public selectRole(role: String) {
-    console.log(role);
+  public selectRole(user, role: String) {
+    user.role = role;
+    this._usersService.updateUser(user).subscribe(
+      (res) => {
+        console.log(res);
+      }
+    );
     return;
   }
 

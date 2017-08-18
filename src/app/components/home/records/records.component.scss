@@ -1,0 +1,67 @@
+app-records {
+    padding: 10px;
+
+    .app-datetimepicker {
+        // width: 200px;
+        height: 29px;
+        display: block;
+    }
+
+    .index {
+        width: 30px;
+    }
+
+    .description {
+        width: 250px;
+    }
+
+    .date {
+        width: 200px;
+    }
+
+    .amount {
+        width: 120px;
+    }
+
+    .comments {
+        width: 200px;
+    }
+
+    .records-header {
+        width: 100%;
+
+        .records-search {
+            width: 100%;
+        }
+
+        .records-headrow {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+
+            > span {
+                display: block;
+            }
+        }
+    }
+
+    .record-cmd {
+        cursor: pointer;
+    }
+    
+    .records-body {
+        width: 100%;
+
+        .records-container {
+            width: 100%;
+
+            .record-element {
+                width: 100%;
+                > div {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+        }
+    }
+}

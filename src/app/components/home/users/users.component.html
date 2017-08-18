@@ -11,7 +11,7 @@
       <span class="username" (click)="selectUser(user)">
            {{user.username}}
       </span>
-      <select class="userrole" *ngIf="editable(user)" [ngModel]="user.role" (ngModelChange)="selectRole($event)">
+      <select class="userrole" *ngIf="editable(user)" [ngModel]="user.role" (ngModelChange)="selectRole(user, $event)">
         <option *ngFor="let role of roles" [value]="role.value">{{role.value}}</option>
       </select> 
       <span class="userrole" *ngIf="!editable(user)">{{user.role}}</span>

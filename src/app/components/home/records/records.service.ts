@@ -13,11 +13,11 @@ export class RecordsService {
         return this._apiDataHandler.getApi('records/' + userId.toString());
     }
 
-    public addRecord(userId: number, record: IRecord) {
+    public addRecord(userId: number, record: any) {
         return this._apiDataHandler.postApi('records/' + userId.toString(), record);
     }
 
-    public updateRecord(userId: number, record: IRecord) {
+    public updateRecord(userId: number, record: any) {
         return this._apiDataHandler.postApi('records/' + userId.toString() + '/' + record.id.toString(), record);
     }
 

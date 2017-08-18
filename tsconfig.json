@@ -18,7 +18,8 @@
       "source-map",
       "uglify-js",
       "webpack",
-      "jquery"
+      "jquery",
+      "jqueryui"
     ],
     "exclude": [
       "node_modules",

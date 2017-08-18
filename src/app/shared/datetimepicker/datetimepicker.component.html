@@ -1,1 +1,5 @@
-<input [(ngModel)]="datetime" type="datetime-local" (ngModelChange)="onChange($event)">
+<div>
+    <span >{{momentDate}}</span>
+    <fa name="calendar" (click)="openDateTimePicker($event)"></fa>
+</div>
+<input class="datetimepicker">

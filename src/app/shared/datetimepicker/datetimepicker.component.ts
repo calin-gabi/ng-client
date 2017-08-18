@@ -1,19 +1,41 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, EventEmitter, Input, ViewEncapsulation, ElementRef } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-datetimepicker',
   templateUrl: './datetimepicker.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./datetimepicker.component.scss']
 })
-export class DatetimepickerComponent implements OnInit {
-  // @Output() public onSelect = new EventEmitter();
-  // @Input() public momentDate: any = null;
 
-  constructor() { }
+export class DatetimepickerComponent implements OnInit, AfterViewInit {
+  @Output() public onSelect: EventEmitter<any> = new EventEmitter();
+  @Input() public momentDate: any;
 
-  public onChange(date) {
-    console.log(date);
-    // this.onSelect.next(date);
+  constructor(
+    private _elementRef: ElementRef
+  ) { }
+
+  public openDateTimePicker() {
+    const tag = this._elementRef.nativeElement;
+    $(tag).find('.datetimepicker').datetimepicker('show');
+  }
+
+  ngAfterViewInit() {
+    const tag = this._elementRef.nativeElement;
+    $(tag).find('.datetimepicker').datetimepicker({
+      format: 'M d Y H:i',
+      onSelectDate: ((crt_date, event) => {
+        console.log(crt_date);
+        event.value = crt_date;
+        this.onSelect.next(crt_date);
+      }),
+      onSelectTime: ((crt_time, event) => {
+        console.log(crt_time);
+        event.value = crt_time;
+        this.onSelect.next(crt_time);
+      })
+    });
   }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
-import { SharedModule } from './shared/shared.module';
 import * as jQuery from 'jquery';
+import { SharedModule } from './shared/shared.module';
 import { HttpModule } from '@angular/http';
 import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';

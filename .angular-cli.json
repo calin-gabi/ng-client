@@ -21,10 +21,16 @@
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "styles.css",
-        "../node_modules/font-awesome/scss/font-awesome.scss"
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/jquery-ui-dist/jquery-ui.css",
+        "../node_modules/jquery-datetimepicker/jquery.datetimepicker.css"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/jquery-ui-dist/jquery-ui.js",
+        "../node_modules/php-date-formatter/js/php-date-formatter.min.js",
+        "../node_modules/jquery-mousewheel/jquery.mousewheel.js",
+        "../node_modules/jquery-datetimepicker/jquery.datetimepicker.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

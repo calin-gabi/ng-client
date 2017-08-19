@@ -21,6 +21,7 @@ export class RecordsComponent implements OnInit {
   public login: any;
   public editable: boolean;
   private _timeoutSave: any = null;
+  private _recordSaving: boolean;
 
   @select(['records', 'records'])
   private _records$: Observable<any>;
@@ -61,12 +62,27 @@ export class RecordsComponent implements OnInit {
     }, 300);
   }
 
-  public amountChange(amount) {
-    console.log(amount);
+  public amountChange(record, amount) {
+    record.amount = +record.amount;
+    if (this._timeoutSave) {
+      clearTimeout(this._timeoutSave);
+    }
+
+    this._timeoutSave = setTimeout(() => {
+      this.saveRecord(record);
+    }, 300);
   }
 
-  public commentChange(comment) {
-    console.log(comment);
+  public commentChange(record, comment) {
+    record.comment = comment;
+    record.amount = +record.amount;
+    if (this._timeoutSave) {
+      clearTimeout(this._timeoutSave);
+    }
+
+    this._timeoutSave = setTimeout(() => {
+      this.saveRecord(record);
+    }, 300);
   }
 
   public addRecord() {
@@ -79,16 +95,19 @@ export class RecordsComponent implements OnInit {
       comment: ''
     });
     console.log(record);
-    this._recordsActions.addRecord(record);
+    this._recordsService.addRecord(this.currentUser.id, record.toSave()).subscribe(
+      (res) => {
+        const rec = new Record(res);
+        this._recordsActions.saveRecord(rec.id, rec);
+      }
+    );
     return ;
   }
 
   public deleteRecord(record) {
-    console.log(record.id);
     if (record.id > 0) {
-      this._recordsService.deleteRecord(record.id).subscribe(
+      this._recordsService.deleteRecord(this.currentUser.id, record.id).subscribe(
         (res) => {
-          console.log(res);
           this._recordsActions.deleteRecord(record);
         }
       );
@@ -105,20 +124,24 @@ export class RecordsComponent implements OnInit {
 
   public saveRecord(record: Record) {
     const recordId = record.id;
-    if (recordId > 0 ) {
-      this._recordsService.updateRecord(recordId, record.toSave()).subscribe(
-        (res) => {
-          const rec = new Record(res);
-          this._recordsActions.saveRecord(rec);
-        }
-      );
-    } else {
-      this._recordsService.addRecord(record.userId, record.toSave()).subscribe(
-        (res) => {
-          console.log(res);
-        }
-      );
+    if (this._recordSaving) {
+      return;
     }
+    this._recordSaving = true;
+    this._recordsService.updateRecord(recordId, record.toSave()).subscribe(
+      (res) => {
+        const rec = new Record({
+          id: res.id,
+          userId: res.userId,
+          description: res.description,
+          date: res.date,
+          amount: res.amount,
+          comment: res.comment
+        });
+        this._recordsActions.saveRecord(rec.id, rec);
+        this._recordSaving = false;
+      }
+    );
   }
 
   ngOnInit() {

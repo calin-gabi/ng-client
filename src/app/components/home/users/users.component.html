@@ -8,14 +8,14 @@
 <div class="body">
   <div class="users-container">
     <div class="user-element" *ngFor="let user of users">
-      <span class="username" (click)="selectUser(user)">
+      <span class="username">
            {{user.username}}
       </span>
       <select class="userrole" *ngIf="editable(user)" [ngModel]="user.role" (ngModelChange)="selectRole(user, $event)">
         <option *ngFor="let role of roles" [value]="role.value">{{role.value}}</option>
       </select> 
       <span class="userrole" *ngIf="!editable(user)">{{user.role}}</span>
-      <fa name="database"></fa>
+      <fa name="database" (click)="selectUser(user)"></fa>
     </div>
   </div>
 </div>

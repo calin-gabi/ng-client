@@ -21,7 +21,7 @@ export class RecordsService {
         return this._apiDataHandler.postApi('records/' + userId.toString() + '/' + record.id.toString(), record);
     }
 
-    public deleteRecord(recordId: number) {
-        return this._apiDataHandler.deleteApi('records/' + recordId.toString());
+    public deleteRecord(userId: number, recordId: number) {
+        return this._apiDataHandler.deleteApi('records/' + userId.toString() + '/' + recordId.toString());
     }
 }

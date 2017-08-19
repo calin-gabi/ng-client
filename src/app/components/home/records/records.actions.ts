@@ -20,14 +20,15 @@ export class RecordsActions {
         this._ngRedux.dispatch({type: RecordsActions.SAVE_RECORDS, payload: records});
     }
 
-    public saveRecord(record: {} ) {
-        this._ngRedux.dispatch({type: RecordsActions.SAVE_RECORD, payload: record});
+    public saveRecord(recordId, record: {} ) {
+        const payload_ = {recordId: recordId, record: record}
+        this._ngRedux.dispatch({type: RecordsActions.SAVE_RECORD, payload: payload_});
     }
 
     public addRecord(record: {} ) {
         this._ngRedux.dispatch({type: RecordsActions.ADD_RECORD, payload: record});
     }
-    
+
     public deleteRecord(record: {} ) {
         this._ngRedux.dispatch({type: RecordsActions.DELETE_RECORD, payload: record});
     }

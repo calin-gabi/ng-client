@@ -1,6 +1,15 @@
 <div class="records-header">
   <div class="records-search">
-    Search div
+    <div class="search-by-date">
+      <span>Records between dates </span>
+      <app-datetimepicker class="app-datetimepicker" [momentDate]="startDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectStartDate($event)"></app-datetimepicker>
+      <span>and</span>  
+      <app-datetimepicker class="app-datetimepicker" [momentDate]="endDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectEndDate($event)"></app-datetimepicker>      
+    </div>
+    <div class="search-by-text">
+      <span>Search text</span>
+      <input type="text" placeholder="Enter text ..." #textFilter (keyup)="0">
+    </div>
   </div>
   <div class="records-headrow">
     <span class="index">#</span>
@@ -15,9 +24,9 @@
 </div>
 <div class="records-body">
   <div class="records-container">
-    <div class="record-element" *ngFor="let record of records; let idx = index">
+    <div class="record-element" *ngFor="let record of records | recordsFilter:textFilter.value">
       <div *ngIf="!editable" >
-        <div class="index">{{idx + 1}}</div>
+        <!-- <div class="index">{{idx + 1}}</div> -->
         <div class="description">{{record.description}}</div>
         <div *ngIf="record.date" class="date">{{record.date._d | date: 'MM/dd/yyyy,HH:mm'}}</div>
         <div class="amount">{{record.amount}}</div>

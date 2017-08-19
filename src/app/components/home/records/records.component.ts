@@ -22,6 +22,9 @@ export class RecordsComponent implements OnInit {
   public editable: boolean;
   private _timeoutSave: any = null;
   private _recordSaving: boolean;
+  public startDate: any;
+  public endDate: any;
+  public textFilter: string;
 
   @select(['records', 'records'])
   private _records$: Observable<any>;
@@ -48,6 +51,23 @@ export class RecordsComponent implements OnInit {
         }
       }
     });
+    this.startDate = moment();
+    this.endDate = moment();
+  }
+
+  public selectStartDate(event) {
+    console.log(event);
+    this.startDate = moment(event);
+  }
+
+  public selectEndDate(event) {
+    console.log(event);
+    this.endDate = moment(event);
+  }
+
+  public filterText(event) {
+    console.log(event);
+    this.filterText = event;
   }
 
   public descriptionChange(record, description) {

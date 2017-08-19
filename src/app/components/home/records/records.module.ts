@@ -6,6 +6,7 @@ import { RecordsService } from './records.service';
 import { RecordsComponent } from './records.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RecordsFilterPipe } from './records-filter.pipe';
 
 @NgModule({
   imports: [
@@ -15,7 +16,9 @@ import { CommonModule } from '@angular/common';
     AngularFontAwesomeModule
   ],
   providers: [RecordsService],
-  declarations: [RecordsComponent],
+  declarations: [RecordsComponent,
+    RecordsFilterPipe
+],
   exports: [RecordsComponent]
 })
 

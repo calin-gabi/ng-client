@@ -9,10 +9,11 @@ app-datetimepicker {
         display: flex;
         flex-direction: row;
         padding: 5px 10px;
+        width: 100%;
         span {
             display: block;
             margin-right: 10px;
-            
+            width: calc(100% - 30px);
         }
         fa {
             cursor: pointer;

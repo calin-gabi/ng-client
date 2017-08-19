@@ -26,12 +26,10 @@ export class DatetimepickerComponent implements OnInit, AfterViewInit {
     $(tag).find('.datetimepicker').datetimepicker({
       format: 'M d Y H:i',
       onSelectDate: ((crt_date, event) => {
-        console.log(crt_date);
         event.value = crt_date;
         this.onSelect.next(crt_date);
       }),
       onSelectTime: ((crt_time, event) => {
-        console.log(crt_time);
         event.value = crt_time;
         this.onSelect.next(crt_time);
       })

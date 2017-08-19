@@ -8,7 +8,7 @@
     </div>
     <div class="search-by-text">
       <span>Search text</span>
-      <input type="text" placeholder="Enter text ..." #textFilter (keyup)="0">
+      <input type="text" placeholder="Enter text ..." #textFilter (keyup)="o">
     </div>
   </div>
   <div class="records-headrow">
@@ -24,7 +24,7 @@
 </div>
 <div class="records-body">
   <div class="records-container">
-    <div class="record-element" *ngFor="let record of records | recordsFilter:textFilter.value">
+    <div class="record-element" *ngFor="let record of records | recordsFilter:textFilter.value; let idx = index;">
       <div *ngIf="!editable" >
         <!-- <div class="index">{{idx + 1}}</div> -->
         <div class="description">{{record.description}}</div>

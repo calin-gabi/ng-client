@@ -24,4 +24,12 @@ export class RecordsService {
     public deleteRecord(userId: number, recordId: number) {
         return this._apiDataHandler.deleteApi('records/' + userId.toString() + '/' + recordId.toString());
     }
+
+    public filterRecords(userId: number, startDate: number, endDate: number) {
+        const payload = {
+            startDate,
+            endDate
+        };
+        return this._apiDataHandler.postApi('records/' + userId.toString() + '/filter', payload);
+    }
 }

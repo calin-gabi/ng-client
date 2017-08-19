@@ -5,6 +5,7 @@
       <app-datetimepicker class="app-datetimepicker" [momentDate]="startDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectStartDate($event)"></app-datetimepicker>
       <span>and</span>  
       <app-datetimepicker class="app-datetimepicker" [momentDate]="endDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectEndDate($event)"></app-datetimepicker>      
+      <fa name="search" (click)="searchByDate()"></fa>
     </div>
     <div class="search-by-text">
       <span>Search text</span>

@@ -65,6 +65,21 @@ export class RecordsComponent implements OnInit {
     this.endDate = moment(event);
   }
 
+  public searchByDate() {
+    this._recordsService.filterRecords(
+      this.currentUser.id,
+      moment(this.startDate).valueOf(),
+      moment(this.endDate).valueOf()).subscribe(
+      (res) => {
+        console.log(res);
+        const records_ = res.map((elem) => {
+          return new Record(elem);
+        });
+        this._recordsActions.saveRecords(records_);
+      }
+    );
+  }
+
   public filterText(event) {
     console.log(event);
     this.filterText = event;

@@ -1,59 +1,65 @@
 app-users {
-    display: block;
-    border-right: solid 0.5px #eee;
-    height: 100%;
+    div.col-lg-4.col-md-4 {
+        
+        background-color: #99b7e8;
+        height: 100%;
 
-    .username {
-        display: block;
-        width: 200px;
-    }
-    .role {
-        width: 150px;
-    }
-
-    > .header {
-        border-bottom: solid 0.5px #ddd;
-        margin-bottom: 10px;
-
-        > .title {
-            width: 100%;
-            display: none;
+        .header-items{
+            font-weight: bold;
         }
-        > .headrow {
-            display: flex;
-            flex-direction: row;
+
+        > .header {
+            margin-left:5px;
+            border-bottom: solid 0.5px #ddd;
+            margin-bottom: 10px;
+
+            > .title {
+                width: 100%;
+                
+            }
+            > .row {
+                height:100%;
+            }
         }
-    }
 
-    > .body {
-        .users-container {
-            .user-element {
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 5px;
-
-                .userrole {
-                    width: 100px;
-                    display: block;
-                }
-
-                span:first-child {
-                    flex-grow: 2;
-                }
-
-                select {                        
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    padding: 2px 30px 2px 5px;
-                    border: none;
-                    flex-grow: 1;
-                }
-
-                fa {
-                    flex-grow: 1;
-                    margin: 0 10px 0 20px;
-                    color: white;
-                    cursor: pointer;
+        > .body {
+            margin-left:5px;
+            .users-container {
+                .user-element {
+                    .row{
+                        height: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        margin-bottom: 5px;
+    
+                        .userrole {
+                            
+                            display: inline-block;
+                        }
+    
+                        span:first-child {
+                            flex-grow: 2;
+                        }
+    
+                        select {                        
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            padding: 2px 0px 2px 5px;
+                            border: none;
+                            flex-grow: 1;
+                        }
+    
+                        .col-lg-1 {
+                            margin-left:0px;
+                            fa {
+                                margin-left:0;
+                                flex-grow: 1;
+                                margin-left:0px;
+                                color: white;
+                                cursor: pointer;
+                            }
+                        }
+                    }
                 }
             }
         }

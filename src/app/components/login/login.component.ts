@@ -1,3 +1,4 @@
+import { GapiManagerService } from './../../core/gapi-manager/gapi-manager.service';
 import { LocalStorageService } from './../../core/local-storage.service';
 import { LoginActions } from './login.actions';
 import { LoginService } from './login.service';
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _loginService: LoginService,
+    private _gapiManagerService: GapiManagerService,
     private _ls: LocalStorageService,
     private _actions: LoginActions
   ) {
@@ -23,9 +25,6 @@ export class LoginComponent implements OnInit {
       username: new FormControl(),
       password: new FormControl()
     });
-  }
-
-  ngOnInit() {
   }
 
   public submitLogin(form: FormGroup) {
@@ -41,4 +40,11 @@ export class LoginComponent implements OnInit {
         });
   }
 
+  public loginGoogle() {
+    this._gapiManagerService.login();
+    return;
+  }
+
+  ngOnInit() {
+  }
 }

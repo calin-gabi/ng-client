@@ -1,3 +1,4 @@
+import { GoogleAuthService } from 'ng-gapi/lib/GoogleAuthService';
 import * as jQuery from 'jquery';
 import { SharedModule } from './shared/shared.module';
 import { HttpModule } from '@angular/http';
@@ -25,7 +26,8 @@ import { CoreModule } from './core/core.module';
     SharedModule
   ],
   providers: [
-    ENV_PROVIDERS
+    ENV_PROVIDERS,
+    GoogleAuthService
   ],
   bootstrap: [AppComponent]
 })

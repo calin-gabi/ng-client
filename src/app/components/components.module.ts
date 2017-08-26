@@ -1,3 +1,5 @@
+import { GapiManagerService } from './../core/gapi-manager/gapi-manager.service';
+import { GapiManagerModule } from './../core/gapi-manager/gapi-manager.module';
 import { HomeResolver } from './home/home.resolver';
 import { AnonymusGuard } from './../core/guards/anonymus-guard.service';
 import { AuthGuard } from './../core/guards/auth-guard.service';
@@ -35,7 +37,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [LoginActions, AuthGuard, AnonymusGuard, HomeResolver],
+  providers: [LoginActions, AuthGuard, AnonymusGuard, HomeResolver, GapiManagerService],
   exports: [RouterModule, HomeModule]
 })
 export class ComponentsModule { }

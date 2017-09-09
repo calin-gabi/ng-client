@@ -11,15 +11,18 @@ export class GapiManagerService {
         private _apiDataHandler: ApiDataHandler,
         @Inject('AppConfig') private _appConfig: IAppConfig
     ) {
-
     }
 
     public login() {
         console.log('login');
         this._googleAuthService.getAuth().subscribe((auth) => {
-            console.log(auth);
+            console.log(auth.isSignedIn.get());
+            const currentUser = auth.currentUser.get().getId();
+            console.log(currentUser);
             if (auth.isSignedIn) {
-                auth.signOut();
+                // const currentUser = auth.currentUser.get().getAuthResponse();
+                // console.log(currentUser);
+                // auth.signOut();
             }
             auth.signIn().then(res => {
                 const idToken = res.Zi.id_token;
@@ -29,11 +32,19 @@ export class GapiManagerService {
                 // );
                 const accessToken = res.Zi.access_token;
                 console.log(accessToken);
-                this.tokenInfo(accessToken).subscribe(
+                this.registerOAuth(accessToken).subscribe(
                     (result) => console.log(result)
                 );
             }, err => console.log(err));
         });
+    }
+
+    public registerOAuth(idToken: String) {
+        const payload = {
+            token: idToken,
+            oauthType: 'google'
+        };
+        return this._apiDataHandler.postApi('oauth/register', payload);
     }
 
     public verifyIdToken(idToken: String) {

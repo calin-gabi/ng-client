@@ -16,7 +16,7 @@ export class DatetimepickerComponent implements OnInit, AfterViewInit {
     private _elementRef: ElementRef
   ) { }
 
-  public openDateTimePicker() {
+  public openDateTimePicker(event) {
     const tag = this._elementRef.nativeElement;
     $(tag).find('.datetimepicker').datetimepicker('show');
   }

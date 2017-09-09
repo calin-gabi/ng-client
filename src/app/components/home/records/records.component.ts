@@ -80,6 +80,10 @@ export class RecordsComponent implements OnInit {
     );
   }
 
+  public typeFilter() {
+    return true;
+  }
+
   public filterText(event) {
     console.log(event);
     this.filterText = event;

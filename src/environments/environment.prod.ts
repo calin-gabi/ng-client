@@ -26,6 +26,10 @@ export function getWindow() {
   return LocalStorageService;
 }
 
+export const ENV_PROVIDERS = [
+  ...PROVIDERS,
+];
+
 export const environment = {
   production: true
 };

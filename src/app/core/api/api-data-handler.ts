@@ -27,9 +27,10 @@ export class ApiDataHandler extends HttpHandlerService {
 
     public getApi(endpoint) {
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        if (endpoint in this.freeRoutes === false) {
-            headers.append('Token', this._ls.get('token', ''));
-        }
+        // if (endpoint in this.freeRoutes === false) {
+        //
+        // }
+        headers.append('Token', this._ls.get('token', ''));
         return this.get(this._appConfig.apiUrl + endpoint, new RequestOptions({ headers}))
             .map(this.extractData)
             .catch(this.handleError);

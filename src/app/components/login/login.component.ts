@@ -16,10 +16,7 @@ export class LoginComponent implements OnInit {
   public username: string = null;
 
   constructor(
-    private _loginService: LoginService,
-    private _gapiManagerService: GapiManagerService,
-    private _ls: LocalStorageService,
-    private _actions: LoginActions
+    private _loginService: LoginService
   ) {
     this.loginForm = new FormGroup({
       username: new FormControl(),
@@ -28,21 +25,15 @@ export class LoginComponent implements OnInit {
   }
 
   public submitLogin(form: FormGroup) {
-      this._loginService.login(
-        form.get('username').value,
-        form.get('password').value)
-        .subscribe((res) => {
-          this._actions.saveLogin(res);
-          this._ls.set('token', res.token);
-          this._loginService.onLogged();
-        }, (error) => {
-          console.log(error);
-        });
+    const payload = {
+      username: form.get('username').value,
+      password:form.get('password').value
+    };
+    this._loginService.login(payload, 'basic');
   }
 
   public loginGoogle() {
-    this._gapiManagerService.login();
-    return;
+    this._loginService.login({}, 'google');
   }
 
   ngOnInit() {

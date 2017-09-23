@@ -15,7 +15,7 @@ export function loginReducer(state: ILoginStore = INITIAL_STATE,
         case LoginActions.SAVE_LOGIN:
             return { ...state, login: action.payload};
         case LoginActions.SAVE_LOGOUT:
-            return { ...state, login: action.payload};
+            return { ...state, login: INITIAL_STATE};
         default:
             return state;
     }

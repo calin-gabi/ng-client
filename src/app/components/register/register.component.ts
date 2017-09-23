@@ -93,8 +93,7 @@ export class RegisterComponent implements OnInit {
         form.get('username').value,
         form.get('password').value)
         .subscribe((res) => {
-          this._actions.saveLogin(res);
-          this._loginService.onLogged();
+          this._loginService.onLoggedIn(res);
         }, (error) => {
           console.log(error);
         });

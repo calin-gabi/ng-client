@@ -16,7 +16,7 @@ export class LoginActions {
         this._ngRedux.dispatch({type: LoginActions.SAVE_LOGIN, payload: login});
     }
 
-    public Logout(login: {}) {
-        this._ngRedux.dispatch({type: LoginActions.SAVE_LOGOUT, payload: login});
+    public Logout() {
+        this._ngRedux.dispatch({type: LoginActions.SAVE_LOGOUT, payload: {}});
     }
 }

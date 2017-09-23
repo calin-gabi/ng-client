@@ -18,7 +18,7 @@ export class RecordsService {
     }
 
     public updateRecord(userId: number, record: any) {
-        return this._apiDataHandler.postApi('records/' + userId.toString() + '/' + record.id.toString(), record);
+        return this._apiDataHandler.patchApi('records/' + userId.toString() + '/' + record.id.toString(), record);
     }
 
     public deleteRecord(userId: number, recordId: number) {

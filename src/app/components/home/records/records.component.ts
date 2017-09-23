@@ -1,11 +1,11 @@
-import { ApiModule } from './../../../core/api/api.module';
-import { RecordsActions } from './records.actions';
-import { RecordsService } from './records.service';
-import { Record } from './record';
-import { Observable } from 'rxjs/Rx';
-import { select } from '@angular-redux/store';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {ApiModule} from './../../../core/api/api.module';
+import {RecordsActions} from './records.actions';
+import {RecordsService} from './records.service';
+import {Record} from './record';
+import {Observable} from 'rxjs/Rx';
+import {select} from '@angular-redux/store';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import * as moment from 'moment';
 
 @Component({
@@ -35,24 +35,20 @@ export class RecordsComponent implements OnInit {
   @select(['login', 'login'])
   private _login$: Observable<any>;
 
-  constructor(
-    private _recordsService: RecordsService,
-    private _recordsActions: RecordsActions
-  ) {
-    this._records$.subscribe((records) => { this.records = records; });
-    this._login$.subscribe((login) => { this.login = login; });
-    this._currentUser$.subscribe((user) => {
-      if (user) {
-        this.currentUser = user;
-        if (['admin', 'manager'].indexOf(this.currentUser['role']) > -1 || this.login['id'] === this.currentUser['id']) {
-          this.editable = true;
-        } else {
-          this.editable = false;
-        }
-      }
+  constructor(private _recordsService: RecordsService,
+              private _recordsActions: RecordsActions) {
+    this._records$.subscribe((records) => {
+      this.records = records || [];
     });
-    this.startDate = moment();
-    this.endDate = moment();
+    this._login$.subscribe((login) => {
+      this.login = login || {};
+    });
+    this._currentUser$.subscribe((user) => {
+      this.currentUser = user || {};
+    });
+    const _now = moment();
+    this.startDate = _now;
+    this.endDate = _now;
   }
 
   public selectStartDate(event) {
@@ -140,7 +136,7 @@ export class RecordsComponent implements OnInit {
         this._recordsActions.saveRecord(rec.id, rec);
       }
     );
-    return ;
+    return;
   }
 
   public deleteRecord(record) {
@@ -167,7 +163,7 @@ export class RecordsComponent implements OnInit {
       return;
     }
     this._recordSaving = true;
-    this._recordsService.updateRecord(recordId, record.toSave()).subscribe(
+    this._recordsService.updateRecord(this.currentUser.id, record.toSave()).subscribe(
       (res) => {
         const rec = new Record({
           id: res.id,
@@ -183,7 +179,25 @@ export class RecordsComponent implements OnInit {
     );
   }
 
+  public isEditable(): Boolean {
+    return ['admin', 'manager']
+      .indexOf(this.currentUser['role']) > -1 || this.login['id'] === this.currentUser['id'];
+  }
+
   ngOnInit() {
+    Observable
+      .zip(
+        this._login$,
+        this._currentUser$
+      )
+      .subscribe(
+        ([login, currentUser]) => {
+          if (login && currentUser) {
+            this.editable = ['admin', 'manager']
+              .indexOf(this.currentUser['role']) > -1 || login['id'] === currentUser['id'];
+            console.log(this.editable);
+          }
+        });
   }
 
 }

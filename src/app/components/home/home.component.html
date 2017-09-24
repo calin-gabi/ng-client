@@ -1,16 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid home-header">
-    <!-- <div class="left-header">
-        Hello {{login.username}}!
-    </div>
-    <div class="middle-header">
-
-    </div>
-    <div class="right-header">
-        <button (click)="logout()">Sign out</button>
-    </div> -->
     <div class="navbar-header">
-      <a class="navbar-brand" style="cursor:default">Hello {{login.username}}!</a>
+      <a class="navbar-brand" style="cursor:default">Hello {{login?.username}}!</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li><a style="cursor:pointer;" (click)="logout()">Sign out</a></li>

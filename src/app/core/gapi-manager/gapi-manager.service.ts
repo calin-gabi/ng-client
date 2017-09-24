@@ -7,6 +7,7 @@ import {LoginActions} from '../../components/login/login.actions';
 import {LocalStorageService} from '../local-storage.service';
 import {Router} from '@angular/router';
 import {LoginService} from '../../components/login/login.service';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class GapiManagerService {
@@ -15,30 +16,36 @@ export class GapiManagerService {
 
   constructor(private _googleAuthService: GoogleAuthService,
               private _apiDataHandler: ApiDataHandler,
+              private _loginService: LoginService,
               private _router: Router,
               @Inject('AppConfig') private _appConfig: IAppConfig) {
   }
 
-  public login(): void {
+  public getAuth() {
     this._googleAuthService.getAuth().subscribe(
       auth => {
         this.auth = auth;
-        auth.signIn()
-        .then(res => {
-            const response = res.getAuthResponse();
-            const idToken = response.id_token;
-            const accessToken = response.access_token;
-            this.loginOAuth(idToken, accessToken).subscribe(
-              (result) => {
-                this._router.navigate(['/']);
-              }
-            );
-          },
-          err => {
-            console.log(err);
-          });
       }
     );
+  }
+
+  public login(): Observable<any> {
+    const sub: Subject<any> = new Subject();
+    this.auth.signIn()
+      .then(res => {
+          const response = res.getAuthResponse();
+          const idToken = response.id_token;
+          const accessToken = response.access_token;
+          this.loginOAuth(idToken, accessToken).subscribe(
+            result => {
+              sub.next(result);
+            }
+          );
+        },
+        err => {
+          console.log(err);
+        });
+    return sub;
   }
 
   public loginOAuth(idToken: String, accessToken: String) {

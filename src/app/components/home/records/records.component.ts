@@ -16,10 +16,10 @@ import * as moment from 'moment';
 })
 
 export class RecordsComponent implements OnInit {
-  public records: Array<any>;
+  public records: Array<any> = [];
   public currentUser: any;
   public login: any;
-  public editable: boolean;
+  public editable = true;
   private _timeoutSave: any = null;
   private _recordSaving: boolean;
   public startDate: any;
@@ -195,7 +195,6 @@ export class RecordsComponent implements OnInit {
           if (login && currentUser) {
             this.editable = ['admin', 'manager']
               .indexOf(this.currentUser['role']) > -1 || login['id'] === currentUser['id'];
-            console.log(this.editable);
           }
         });
   }

@@ -5,6 +5,8 @@ import {CanLoad, Router, Route, CanActivate, ActivatedRouteSnapshot, RouterState
 // tslint:disable-next-line:import-blacklist
 import {Observable} from 'rxjs';
 import {LocalStorageService} from '../local-storage.service';
+import {IAppState} from '../store/store.module';
+import {NgRedux} from '@angular-redux/store';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -12,7 +14,8 @@ export class AuthGuard implements CanActivate {
   constructor(private _router: Router,
               private _loginService: LoginService,
               private _ls: LocalStorageService,
-              private _actions: LoginActions) {
+              private _actions: LoginActions,
+              private _ngRedux: NgRedux<IAppState>) {
   }
 
   public canActivate() {
@@ -27,10 +30,13 @@ export class AuthGuard implements CanActivate {
       })
       .flatMap((res) => {
         if (res.username === 'anonymus') {
-          console.log('login ');
           this._router.navigate(['login']);
           return Observable.of(false);
         } else {
+          const login = (this._ngRedux.getState().login.login || {id: null});
+          if (login['id'] !== res.id) {
+            this._actions.saveLogin(res);
+          }
           return Observable.of(true);
         }
       });

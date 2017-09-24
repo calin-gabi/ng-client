@@ -28,24 +28,22 @@ export class HomeResolver implements Resolve<any> {
       })
       .map(
         (res) => {
-          // console.log(res);
-          const usersList = this._ngRedux.getState().users.users;
-          if (JSON.stringify(usersList) !== JSON.stringify(res)) {
+          if (JSON.stringify(this._ngRedux.getState().users.users) !== JSON.stringify(res)) {
             this._usersActions.saveUsers(res);
           }
           let currentUser = this._ngRedux.getState().login.login;
-          if (usersList.length > 0) {
-            currentUser = usersList[0]['id'];
+          if (currentUser === {} && this._ngRedux.getState().users.users.length > 0) {
+            currentUser = this._ngRedux.getState().users.users[0]['id'];
           }
-          if (currentUser['id'] !== this._ngRedux.getState().records.currentUser['id']) {
+          if (currentUser['id'] !== (this._ngRedux.getState().records.currentUser || {id: null})['id']) {
             this._recordsActions.saveCurrentUser(currentUser);
           }
-          console.log(this._ngRedux.getState());
+          // console.log(currentUser);
           return currentUser;
         }
       )
       .flatMap((user) => {
-        console.log(user);
+        // console.log(user);
         return this._recordsService.getRecords(user['id'])
           .catch((error) => {
             return Observable.of([]);

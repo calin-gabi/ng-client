@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
         if (res) {
           this._actions.Logout();
           this._router.navigate(['login']);
-          this._ls.set('token', null);
+          this._ls.clear('token');
           this._gapiManagerService.logout();
         }
       }

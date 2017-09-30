@@ -4,8 +4,8 @@
       <div class="search-by-date">
         <span>Records between dates </span>
         <app-datetimepicker class="app-datetimepicker" [momentDate]="startDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectStartDate($event)"></app-datetimepicker>
-        <span>and</span>  
-        <app-datetimepicker class="app-datetimepicker" [momentDate]="endDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectEndDate($event)"></app-datetimepicker>      
+        <span>and</span>
+        <app-datetimepicker class="app-datetimepicker" [momentDate]="endDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectEndDate($event)"></app-datetimepicker>
         <fa name="search" (click)="searchByDate()"></fa>
       </div>
       <div class="search-by-text">
@@ -37,7 +37,7 @@
         <div *ngIf="editable" >
           <div class="index">{{idx + 1}}</div>
           <div class="description">
-            <input type="text" [ngModel]="record.description" (ngModelChange)="descriptionChange(record, $event)"> 
+            <input type="text" [ngModel]="record.description" (ngModelChange)="descriptionChange(record, $event)">
           </div>
           <div class="date">
             <app-datetimepicker class="app-datetimepicker" [momentDate]="record.date._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="onSelect(record, $event)"></app-datetimepicker>

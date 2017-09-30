@@ -25,7 +25,6 @@ export class AnonymusGuard implements CanActivate {
             })
             .flatMap((res) => {
                 if (res.username === 'anonymus') {
-                    console.log(res);
                     return Observable.of(true);
                 } else {
                     this._router.navigate(['']);

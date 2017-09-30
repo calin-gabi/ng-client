@@ -17,4 +17,12 @@ export class LocalStorageService {
     public get(key: string, defaultValue: string) {
         return this._wls.localStorage.getItem(key) || defaultValue;
     }
+
+    public clear(key: string): void {
+      if (key) {
+        this._wls.localStorage.removeItem(key);
+      } else {
+        this._wls.localStorage.clear();
+      }
+    }
 }

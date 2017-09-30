@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" *ngIf="users?.length">
   <div class="header">
     <h1 class="title">Users</h1>
     <div class="row">
@@ -18,7 +18,7 @@
           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
               <select class="userrole" *ngIf="editable(user)" [ngModel]="user.role" (ngModelChange)="selectRole(user, $event)">
                   <option *ngFor="let role of roles" [value]="role.value">{{role.value}}</option>
-                </select> 
+                </select>
                 <span class="userrole" *ngIf="!editable(user)">{{user.role}}</span>
           </div>
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">

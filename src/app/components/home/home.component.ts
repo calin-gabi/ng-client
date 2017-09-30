@@ -4,7 +4,6 @@ import {LoginService} from './../login/login.service';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {select} from '@angular-redux/store';
-import {GapiManagerService} from '../../core/gapi-manager/gapi-manager.service';
 import {LocalStorageService} from '../../core/local-storage.service';
 
 @Component({
@@ -22,8 +21,7 @@ export class HomeComponent implements OnInit {
   constructor(private _loginService: LoginService,
               private _actions: LoginActions,
               private _router: Router,
-              private _ls: LocalStorageService,
-              private _gapiManagerService: GapiManagerService) {
+              private _ls: LocalStorageService) {
     this._login$.subscribe((login) => {
       this.login = login;
     });
@@ -36,7 +34,6 @@ export class HomeComponent implements OnInit {
           this._actions.Logout();
           this._router.navigate(['login']);
           this._ls.clear('token');
-          this._gapiManagerService.logout();
         }
       }
     );

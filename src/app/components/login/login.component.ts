@@ -1,4 +1,3 @@
-import { GapiManagerService } from './../../core/gapi-manager/gapi-manager.service';
 import { LocalStorageService } from './../../core/local-storage.service';
 import { LoginActions } from './login.actions';
 import { LoginService } from './login.service';

@@ -91,12 +91,7 @@ export class RegisterComponent implements OnInit {
     if (form.valid) {
       this._loginService.register(
         form.get('username').value,
-        form.get('password').value)
-        .subscribe((res) => {
-          this._loginService.onLoggedIn(res);
-        }, (error) => {
-          console.log(error);
-        });
+        form.get('password').value);
     } else {
       console.log('form invalid');
     }

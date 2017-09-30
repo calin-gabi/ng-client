@@ -1,10 +1,8 @@
-import {GapiManagerService} from './../../core/gapi-manager/gapi-manager.service';
-import {LocalStorageService} from './../../core/local-storage.service';
-import {LoginActions} from './login.actions';
-import {LoginService} from './login.service';
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
-import {Subject} from "rxjs/Subject";
+import { LocalStorageService } from './../../core/local-storage.service';
+import { LoginActions } from './login.actions';
+import { LoginService } from './login.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +14,9 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public username: string = null;
 
-  constructor(private _loginService: LoginService,
-              private _gapiManagerService: GapiManagerService) {
+  constructor(
+    private _loginService: LoginService
+  ) {
     this.loginForm = new FormGroup({
       username: new FormControl(),
       password: new FormControl()
@@ -27,26 +26,15 @@ export class LoginComponent implements OnInit {
   public submitLogin(form: FormGroup) {
     const payload = {
       username: form.get('username').value,
-      password: form.get('password').value
+      password:form.get('password').value
     };
     this._loginService.login(payload, 'basic');
   }
 
   public loginGoogle() {
-    const sub: Subject<any> = new Subject();
-    this._gapiManagerService.login().subscribe(
-      (result) => {
-        console.log(result);
-        sub.next(result);
-      });
-    sub.subscribe(
-      result => {
-        setTimeout(() => { this._loginService.onLoggedIn(result); }, 500);
-      }
-    );
+    this._loginService.login({}, 'google');
   }
 
   ngOnInit() {
-    setTimeout(() => { this._gapiManagerService.getAuth(); }, 1000);
   }
 }

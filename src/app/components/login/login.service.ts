@@ -32,7 +32,6 @@ export class LoginService implements OnDestroy {
   }
 
   public onSuccessfullLogin(result: any, loginType: String) {
-    console.log(result);
     result.loginType = loginType;
     const payload = result;
     this._actions.saveLogin(payload);
@@ -42,7 +41,8 @@ export class LoginService implements OnDestroy {
 
   private basicLogin(payload: any) {
     return this._apiData.postApi('auth/signIn', this._addCommonParams(payload))
-      .map((result) => this.onSuccessfullLogin(result, 'basic'));
+      .subscribe(
+        (result) => this.onSuccessfullLogin(result, 'basic'));
   }
 
   private googleLogin() {

@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MdFormFieldModule, MdFormField, MatButtonModule, MatInputModule } from '@angular/material';
 
 export const ROUTES: Routes = [
   { path: '',
@@ -33,6 +35,10 @@ export const ROUTES: Routes = [
     FormsModule,
     HomeModule,
     ReactiveFormsModule,
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
+    MdFormFieldModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [LoginActions, AuthGuard, AnonymusGuard, HomeResolver],

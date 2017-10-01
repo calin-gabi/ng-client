@@ -1,22 +1,28 @@
-<div id="login-form">
-  <div class="title">Sign In</div>
-  <form novalidate [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
-    <div class="main-div">
-      <div class="field-control">
-        <label for="username">Username</label>
-        <input formControlName="username" id="username" type="text" required>
+<div id="login">
+  <div id="login-form" class="col-sm-4">
+    <div class="title">Sign In</div>
+    <form novalidate [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
+      <div class="main-div layout-row layout-align-center-center">
+        <md-input-container class="layout-align-center-center">
+          <label for="username">Username</label>
+          <input mdInput formControlName="username" id="username" type="text" required>
+        </md-input-container>
+        <md-input-container>
+          <label for="password">Password</label>
+          <input mdInput formControlName="password" id="password" type="password" required>
+        </md-input-container>
       </div>
-      <div  class="field-control">
-        <label for="password">Password</label>
-        <input formControlName="password" id="password" type="password" required>
+      <div class="submit layout-row layout-align-center-center" >
+        <button md-raised-button  class="col-sm-6" type="submit" >Login</button>
       </div>
-    </div>
-    <div class="submit-div">
-      <button type="submit">Login</button>
-    </div>
-  </form>
-  <p >
-    <a href="#" routerLink="/register" class="btn-link">Register if you don't have an account</a>
-  </p>
+    </form>
+    <p >
+      <a href="#" routerLink="/register" class="btn-link">Register if you don't have an account</a>
+    </p>
+  </div>
+  <div class="col-sm-4 google-login">
+    <button md-raised-button (click)="loginGoogle()">
+      <img src="../../../assets/google-oauth.png" alt="">
+      Google login</button>
+  </div>
 </div>
-<button (click)="loginGoogle()">Google login</button>

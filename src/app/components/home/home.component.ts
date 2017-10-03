@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     this._currentUser$.subscribe((currentUser) => {
       this.currentUser = currentUser;
       if (currentUser.profile) {
-        this.username = currentUser.profile.first_name + ' ' + currentUser.profile.last_name;
+        this.username = (currentUser.profile.first_name || '' ) + ' ' + (currentUser.profile.last_name || '');
       } else {
         this.username = currentUser.username;
       }

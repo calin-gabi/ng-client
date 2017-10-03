@@ -1,31 +1,37 @@
-<div>
-  <form novalidate [formGroup]="registerForm" (ngSubmit)="submitRegister(registerForm)">
-    <div >
-      <div >
-        <label for="username">Username</label>
-        <input formControlName="username" id="username" type="text" required>
-        <div 
-          *ngIf="registerForm.controls['username'].hasError('usernameExists') 
+<div id="register">
+  <div class="register-form" id="register-form" class="col-sm-4">
+    <div class="title">Register</div>
+    <form novalidate
+          [formGroup]="registerForm" (ngSubmit)="submitRegister(registerForm)">
+      <div class="main-div layout-row layout-align-center-center">
+        <md-input-container class="layout-align-center-center" >
+          <label for="username">Username</label>
+          <input mdInput formControlName="username" id="username" type="text" required>
+          <div
+            *ngIf="registerForm.controls['username'].hasError('usernameExists')
                   && registerForm.controls['username'].touched">
-                  Username not available!
-        </div>
-      </div>
-      <div >
-        <label for="password">Type password</label>
-        <input formControlName="password" id="password" type="password" required>
-      </div>
-      <div >
-        <label for="passwordRpeat">Repeat password</label>
-        <input formControlName="passwordRepeat" id="passwordRepeat" type="password" required>
-      </div>
-        <div 
-          *ngIf="registerForm.hasError('mismatchedPasswords') 
+            Username not available!
+          </div>
+        </md-input-container>
+        <md-input-container >
+          <label for="password">Type password</label>
+          <input mdInput formControlName="password" id="password" type="password" required>
+        </md-input-container>
+        <md-input-container >
+          <label for="passwordRpeat">Repeat password</label>
+          <input mdInput formControlName="passwordRepeat" id="passwordRepeat" type="password" required>
+        </md-input-container>
+        <div
+          *ngIf="registerForm.hasError('mismatchedPasswords')
                   && registerForm.touched">
-                  Passwords do not match!!
+          Passwords do not match!!
         </div>
-    </div>
-    <div >
-      <button type="submit" [disabled]="registerForm.invalid">Register</button>
-    </div>
-  </form>
+      </div>
+      <div class="submit layout-row layout-align-center-center" >
+        <button md-raised-button  class="col-sm-6" type="submit"
+                [disabled]="registerForm.invalid">Register</button>
+      </div>
+    </form>
+
+  </div>
 </div>

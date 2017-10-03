@@ -2,12 +2,13 @@ import { LoginActions } from './../login/login.actions';
 import { LoginService } from './../login/login.service';
 // tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
@@ -70,7 +71,6 @@ export class RegisterComponent implements OnInit {
     return (group: FormGroup): { [key: string]: any } => {
       const password = group.controls[passwordKey];
       const confirmPassword = group.controls[confirmPasswordKey];
-      console.log(this.registerForm);
       if (confirmPassword.pristine) {
         return {};
       }

@@ -1,67 +1,67 @@
 app-users {
-    div.col-lg-4.col-md-4 {
-        
-        background-color: #99b7e8;
-        height: 100%;
+  div.col-lg-4.col-md-4 {
 
-        .header-items{
-            font-weight: bold;
-        }
+    height: 100%;
 
-        > .header {
-            margin-left:5px;
-            border-bottom: solid 0.5px #ddd;
-            margin-bottom: 10px;
-
-            > .title {
-                width: 100%;
-                
-            }
-            > .row {
-                height:100%;
-            }
-        }
-
-        > .body {
-            margin-left:5px;
-            .users-container {
-                .user-element {
-                    .row{
-                        height: 100%;
-                        display: flex;
-                        flex-direction: row;
-                        margin-bottom: 5px;
-    
-                        .userrole {
-                            
-                            display: inline-block;
-                        }
-    
-                        span:first-child {
-                            flex-grow: 2;
-                        }
-    
-                        select {                        
-                            -webkit-appearance: none;
-                            -moz-appearance: none;
-                            padding: 2px 0px 2px 5px;
-                            border: none;
-                            flex-grow: 1;
-                        }
-    
-                        .col-lg-1 {
-                            margin-left:0px;
-                            fa {
-                                margin-left:0;
-                                flex-grow: 1;
-                                margin-left:0px;
-                                color: white;
-                                cursor: pointer;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    .header-items {
+      font-weight: bold;
     }
+
+    > .header {
+      margin-left: 5px;
+      border-bottom: solid 0.5px #ddd;
+      margin-bottom: 10px;
+
+      > .title {
+        width: 100%;
+
+      }
+      > .row {
+        height: 100%;
+      }
+    }
+
+    > .body {
+      margin-left: 5px;
+      .users-container {
+        .user-element {
+          .row {
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 5px;
+
+            .userrole {
+
+              display: inline-block;
+            }
+
+            span:first-child {
+              flex-grow: 2;
+            }
+
+            select {
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              padding: 2px 0px 2px 5px;
+              border: none;
+              flex-grow: 1;
+              color: #000;
+            }
+
+            .col-lg-1 {
+              margin-left: 0px;
+              fa {
+                margin-left: 0;
+                flex-grow: 1;
+                margin-left: 0px;
+                color: white;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -7,13 +7,15 @@ import { RecordsComponent } from './records.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecordsFilterPipe } from './records-filter.pipe';
+import { MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatListModule
   ],
   providers: [RecordsService],
   declarations: [RecordsComponent,

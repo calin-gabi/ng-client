@@ -1,16 +1,33 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid home-header">
-    <div class="navbar-header">
-      <a class="navbar-brand" style="cursor:default">Hello {{login?.username}}!</a>
+<md-toolbar class="my-nav">
+  <md-toolbar-row >
+    <div class="profile">
+      <div  *ngIf="!login.profile" >
+        <span>Hello {{login?.username}}!</span>
+      </div>
+      <div  *ngIf="login.profile" >
+        <!--<img src="{{login?.profile.picture_url}}" alt="">-->
+        <span>Hello {{login?.profile.first_name}} {{login?.profile.last_name}}!</span>
+      </div>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a style="cursor:pointer;" (click)="logout()">Sign out</a></li>
-    </ul>
-  </div>
-</nav>
-<div class="container-fluid">
-  <div class="row">
+    <div class="middle">
+
+    </div>
+    <button md-button class="logout-button col-sm-1" (click)="logout()">
+      Sign out!
+    </button>
+  </md-toolbar-row>
+</md-toolbar>
+<md-tab-group>
+  <md-tab label="Users">
     <app-users></app-users>
+  </md-tab>
+  <md-tab label="Records for {{username}}">
     <app-records></app-records>
+  </md-tab>
+</md-tab-group>
+<!--<div class="container-fluid">
+  <div class="row">
+
+
   </div>
-</div>
+</div>-->

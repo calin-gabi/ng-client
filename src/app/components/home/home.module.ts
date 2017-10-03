@@ -5,12 +5,21 @@ import { UsersModule } from './users/users.module';
 import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatTabsModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     UsersModule,
-    RecordsModule
+    RecordsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTabsModule
   ],
   providers: [UsersActions, RecordsActions],
   declarations: [HomeComponent],

@@ -14,9 +14,14 @@ import {LocalStorageService} from '../../core/local-storage.service';
 })
 export class HomeComponent implements OnInit {
   public login: any;
+  public currentUser: any;
+  public username;
 
   @select(['login', 'login'])
   private _login$: Observable<any>;
+
+  @select(['records', 'currentUser'])
+  private _currentUser$: Observable<any>;
 
   constructor(private _loginService: LoginService,
               private _actions: LoginActions,
@@ -24,6 +29,14 @@ export class HomeComponent implements OnInit {
               private _ls: LocalStorageService) {
     this._login$.subscribe((login) => {
       this.login = login;
+    });
+    this._currentUser$.subscribe((currentUser) => {
+      this.currentUser = currentUser;
+      if (currentUser.profile) {
+        this.username = currentUser.profile.first_name + ' ' + currentUser.profile.last_name;
+      } else {
+        this.username = currentUser.username;
+      }
     });
   }
 

@@ -1,59 +1,70 @@
-<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
   <div class="records-header">
-    <h1 class="title">Records</h1>
     <div class="records-search">
       <div class="search-by-date">
-        <span>Records between dates </span>
-        <app-datetimepicker class="app-datetimepicker" [momentDate]="startDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectStartDate($event)"></app-datetimepicker>
+        <span>Display records between </span>
+        <app-datetimepicker class="app-datetimepicker"
+                            [momentDate]="startDate._d | date: 'MMM  dd yyyy HH:mm'"
+                            (onSelect)="selectStartDate($event)"></app-datetimepicker>
         <span>and</span>
-        <app-datetimepicker class="app-datetimepicker" [momentDate]="endDate._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="selectEndDate($event)"></app-datetimepicker>
+        <app-datetimepicker class="app-datetimepicker"
+                            [momentDate]="endDate._d | date: 'MMM  dd yyyy HH:mm'"
+                            (onSelect)="selectEndDate($event)"></app-datetimepicker>
         <fa name="search" (click)="searchByDate()"></fa>
       </div>
       <div class="search-by-text">
-        <span>Search text</span>
+        <span>Search records containing text</span>
         <input type="text" placeholder="Enter text ..." #textFilter (keyup)="typeFilter()">
+        <fa name="search"></fa>
       </div>
     </div>
-    <div class="records-headrow">
-      <span class="index">#</span>
-      <span class="description">Description</span>
-      <span class="date">Date time</span>
-      <span class="amount">Amount</span>
-      <span class="comments">Comments</span>
-      <div *ngIf="editable" class="record-cmd">
+  </div>
+  <md-list class="records-container">
+    <div md-subheader class="records-headrow">
+      <span class="col-sm-1">#</span>
+      <span class="col-sm-2">Description</span>
+      <span class="col-sm-3">Date time</span>
+      <span class="col-sm-2">Amount</span>
+      <span class="col-sm-3">Comments</span>
+      <div *ngIf="editable" class="col-sm-1">
         <fa name="plus" (click)="addRecord()"></fa>
       </div>
     </div>
-  </div>
-  <div class="records-body">
-    <div class="records-container">
-      <div class="record-element" *ngFor="let record of records | recordsFilter:textFilter.value; let idx = index;">
-        <div *ngIf="!editable" >
-          <!-- <div class="index">{{idx + 1}}</div> -->
-          <div class="description">{{record.description}}</div>
-          <div *ngIf="record.date" class="date">{{record.date._d | date: 'MM/dd/yyyy,HH:mm'}}</div>
-          <div class="amount">{{record.amount}}</div>
-          <div class="comments">{{record.comment}}</div>
+    <md-list-item *ngFor="let record of records | recordsFilter:textFilter.value; let idx = index;">
+      <div md-line *ngIf="!editable" >
+        <div class="col-sm-1">{{idx + 1}}</div>
+        <div class="col-sm-2">{{record.description}}</div>
+        <div *ngIf="record.date" class="col-sm-3">{{record.date._d | date: 'MM/dd/yyyy,HH:mm'}}</div>
+        <div class="col-sm-2">{{record.amount}}</div>
+        <div class="col-sm-3">{{record.comment}}</div>
+      </div>
+      <div md-line *ngIf="editable" >
+        <div class="col-sm-1">{{idx + 1}}</div>
+        <div class="col-sm-2">
+          <input type="text"
+                 [ngModel]="record.description"
+                 (ngModelChange)="descriptionChange(record, $event)">
         </div>
-        <div *ngIf="editable" >
-          <div class="index">{{idx + 1}}</div>
-          <div class="description">
-            <input type="text" [ngModel]="record.description" (ngModelChange)="descriptionChange(record, $event)">
-          </div>
-          <div class="date">
-            <app-datetimepicker class="app-datetimepicker" [momentDate]="record.date._d | date: 'MMM  dd yyyy HH:mm'" (onSelect)="onSelect(record, $event)"></app-datetimepicker>
-          </div>
-          <div class="amount">
-            <input type="number" [ngModel]="record.amount" (ngModelChange)="amountChange(record, $event)">
-          </div>
-          <div class="comments">
-            <input type="text" [ngModel]="record.comment" (ngModelChange)="commentChange(record, $event)">
-          </div>
-          <div class="record-cmd">
-            <fa name="trash" (click)="deleteRecord(record)"></fa>
-          </div>
+        <div class="col-sm-3">
+          <app-datetimepicker class="app-datetimepicker"
+                              [momentDate]="record.date._d | date: 'MMM  dd yyyy HH:mm'"
+                              (onSelect)="onSelect(record, $event)"></app-datetimepicker>
+        </div>
+        <div class="col-sm-2">
+          <input type="number"
+                 [ngModel]="record.amount"
+                 (ngModelChange)="amountChange(record, $event)">
+        </div>
+        <div class="col-sm-3">
+          <input type="text"
+                 [ngModel]="record.comment"
+                 (ngModelChange)="commentChange(record, $event)">
+        </div>
+        <div class="col-sm-1">
+          <fa name="trash" (click)="deleteRecord(record)"></fa>
         </div>
       </div>
-    </div>
-  </div>
+    </md-list-item>
+  </md-list>
 </div>

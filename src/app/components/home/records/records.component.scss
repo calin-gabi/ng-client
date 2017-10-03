@@ -1,94 +1,103 @@
 app-records {
-    padding: 10px;
+  padding: 10px;
+  font-size: 16px;
 
-    .app-datetimepicker {
-        width: 180px;
-        height: 29px;
+  .app-datetimepicker {
+    width: 220px;
+    height: 29px;
+    display: block;
+    margin: 0 10px;
+  }
+
+  .index {
+    width: 30px;
+  }
+
+  .description {
+    width: 250px;
+  }
+
+  .date {
+    width: 200px;
+  }
+
+  .amount {
+    width: 120px;
+  }
+
+  .comments {
+    width: 200px;
+  }
+
+  .records-header {
+    width: 100%;
+    border-bottom: solid;
+    border-bottom-width: 0.5px;
+    border-bottom-color: rgba(20,20,20,.5);
+
+    .records-search {
+      width: 100%;
+      padding: 10px;
+      span {
         display: block;
-        margin: 0 10px;
-    }
+      }
 
-    .index {
-        width: 30px;
-    }
-
-    .description {
-        width: 250px;
-    }
-
-    .date {
-        width: 200px;
-    }
-
-    .amount {
-        width: 120px;
-    }
-
-    .comments {
-        width: 200px;
-    }
-
-    .records-header {
+      .search-by-date {
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
 
-        .records-search {
-            width: 100%;
-            span {
-                display: block;
-            }
+        fa {
+          color: white;
+          cursor: pointer;
+        }
+      }
 
-            .search-by-date {
-                width: 100%;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
+      .search-by-text {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 5px;
 
-                fa{
-                    color: white;
-                    cursor: pointer;
-                }
-            }
-
-            .search-by-text {
-                width: 100%;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                input {
-                    margin: 0 10px;
-                }
-            }
-
+        input {
+          margin: 0 10px;
+          border: none;
+          outline: none;
         }
 
-        .records-headrow {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-
-            > span {
-                display: block;
-            }
+        ::placeholder {
+          color: rgba(20,20,20, 0.4);
         }
+      }
+
     }
+  }
+
+  .records-headrow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid;
+    border-bottom-width: 0.5px;
+    border-bottom-color: rgba(20,20,20,.5);
+
+    > span {
+      display: block;
+      font-size: 18px;
+    }
+  }
+
+  .mat-list-item-content {
+    border-bottom: solid;
+    border-bottom-width: 0.5px;
+    border-bottom-color: rgba(20,20,20,.5);
 
     .record-cmd {
-        cursor: pointer;
+      cursor: pointer;
     }
-
-    .records-body {
-        width: 100%;
-
-        .records-container {
-            width: 100%;
-
-            .record-element {
-                width: 100%;
-                > div {
-                    display: flex;
-                    flex-direction: row;
-                }
-            }
-        }
-    }
+  }
 }

@@ -1,31 +1,27 @@
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" *ngIf="users?.length">
-  <div class="header">
-    <h1 class="title">Users</h1>
-    <div class="row">
-      <span class="header-item col-lg-6 col-md-6 col-sm-6 col-xs-6">Username</span>
-      <span class="header-item col-lg-6 col-md-6 col-sm-6 col-xs-6">Role</span>
-    </div>
-  </div>
-  <div class="body">
-    <div class="users-container">
-      <div class="user-element" *ngFor="let user of users">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div *ngIf="users?.length">
+  <md-list class="users-container">
+    <h4 md-subheader class="row header">
+      <span class="header-item col-lg-5 col-md-5 col-sm-5 col-xs-5">Username</span>
+      <span class="header-item col-lg-5 col-md-5 col-sm-5 col-xs-5">Role</span>
+      <span class="header-item col-lg-2 col-md-2 col-sm-2 col-xs-2">Select user</span>
+    </h4>
+    <md-list-item *ngFor="let user of users">
+      <div md-line>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
               <span class="username">
                   {{user.username}}
               </span>
-          </div>
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-              <select class="userrole" *ngIf="editable(user)" [ngModel]="user.role" (ngModelChange)="selectRole(user, $event)">
-                  <option *ngFor="let role of roles" [value]="role.value">{{role.value}}</option>
-                </select>
-                <span class="userrole" *ngIf="!editable(user)">{{user.role}}</span>
-          </div>
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                <fa name="database" (click)="selectUser(user)"></fa>
-          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+          <select class="userrole" *ngIf="editable(user)" [ngModel]="user.role" (ngModelChange)="selectRole(user, $event)">
+            <option *ngFor="let role of roles" [value]="role.value">{{role.value}}</option>
+          </select>
+          <span class="userrole" *ngIf="!editable(user)">{{user.role}}</span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <fa name="database" (click)="selectUser(user)"></fa>
         </div>
       </div>
-    </div>
-  </div>
+    </md-list-item>
+  </md-list>
 </div>
